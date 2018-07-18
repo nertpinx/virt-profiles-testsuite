@@ -34,4 +34,4 @@ The testsuite is organized as follows.
    - 000\_request.json
    - 000\_response\_200.json
 
-   Finally, in each subdirectory CURL.md file will illustrate the template command line to send the requests.
+   Finally, in each subdirectory CURL.sh file will illustrate the template command line to send the requests.
