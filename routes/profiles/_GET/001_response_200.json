@@ -1,6 +1,190 @@
-{
-   "myapp-defaults" : "PHByb2ZpbGUgbmFtZT0nbXlhcHAtZGVmYXVsdHMnPgogIDxkZWZhdWx0cyB0eXBlPSdoYXJkJz4KICAgIDxkZXZpY2VzPgogICAgICA8Z3JhcGhpY3MgdHlwZT0nc3BpY2UnLz4KICAgICAgPGludGVyZmFjZT4KICAgICAgICA8bW9kZWwgdHlwZT0nZTEwMDBlJy8+CiAgICAgIDwvaW50ZXJmYWNlPgogICAgPGRldmljZXM+CiAgPC9kZWZhdWx0cz4KPC9wcm9maWxlPgo=",
-   "spice-stuff" : "PHByb2ZpbGUgbmFtZT0nc3BpY2Utc3R1ZmYnPgogIDxtYXRjaD4KICAgIDxkZXZpY2VzPgogICAgICA8Z3JhcGhpY3MgdHlwZT0nc3BpY2UnLz4KICAgIDxkZXZpY2VzPgogIDwvbWF0Y2g+CiAgPGFkZD4KICAgIDxkZXZpY2VzPgogICAgICA8dmlkZW8+CiAgICAgICAgPG1vZGVsIHR5cGU9J3F4bCcvPgogICAgICA8L3ZpZGVvPgogICAgPGRldmljZXM+CiAgPC9hZGQ+CiAgPGFkZCBtdWx0aXBsZT0neWVzJz4KICAgIDxkZXZpY2VzPgogICAgICA8cmVkaXJkZXYgYnVzPSd1c2InIHR5cGU9J3NwaWNldm1jJy8+CiAgICAgIDxyZWRpcmRldiBidXM9J3VzYicgdHlwZT0nc3BpY2V2bWMnLz4KICAgIDwvZGV2aWNlcz4KICA8L2FkZD4KPC9wcm9maWxlPgo=",
-   "hyperv-defaults" : "PHByb2ZpbGUgbmFtZT0naHlwZXJ2LWRlZmF1bHRzJz4KICA8bWF0Y2g+CiAgICA8bWV0YWRhdGE+CiAgICAgIDx2aXJ0dW5lZDp2aXJ0dW5lZD4KICAgICAgICA8dmlydHVuZWQ6Z3Vlc3Qgb3NfdHlwZT0nd2luZG93cycvPgogICAgICA8L3ZpcnR1bmVkOnZpcnR1bmVkPgogICAgPG1ldGFkYXRhPgogIDwvbWF0Y2g+CiAgPGFkZD4KICAgIDxmZWF0dXJlcz4KICAgICAgPGh5cGVydj4KICAgICAgICA8cmVsYXhlZCBzdGF0ZT0ib24iLz4KICAgICAgICA8dmFwaWMgc3RhdGU9Im9uIi8+CiAgICAgICAgPHNwaW5sb2NrcyBzdGF0ZT0ib24iIHJldHJpZXM9IjgxOTEiLz4KICAgICAgPC9oeXBlcnY+CiAgICA8L2ZlYXR1cmVzPgogIDwvYWRkPgo8L3Byb2ZpbGU+Cg==",
-   "sensible-defaults" : "PHByb2ZpbGUgbmFtZT0nc2Vuc2libGUtZGVmYXVsdHMnPgogIDxhZGQgbXVsdGlwbGU9J25vJz4KICAgIDxkZXZpY2VzPgogICAgICA8dmlkZW8+CiAgICAgICAgPG1vZGVsIHR5cGU9J3F4bCcvPgogICAgICA8L3ZpZGVvPgogICAgPGRldmljZXM+CiAgPC9hZGQ+CiAgPGRlZmF1bHRzPgogICAgPGRldmljZXM+CiAgICAgIDxpbnRlcmZhY2U+CiAgICAgICAgPG1vZGVsIHR5cGU9J3ZpcnRpbycvPgogICAgICA8L2ludGVyZmFjZT4KICAgIDxkZXZpY2VzPgogIDwvZGVmYXVsdHM+CjwvcHJvZmlsZT4K"
-}
+[
+  {
+    "add-qxl": {
+      "version": "v1alpha1",
+      "metadata": {
+        "name": "add-qxl"
+      },
+      "spec": {
+        "domainspec": [
+          {
+            "action": "add",
+            "data": {
+              "devices": {
+                "video": {
+                  "model": {
+                    "@type": "qxl"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "hyperv-defaults": {
+      "version": "v1alpha1",
+      "metadata": {
+        "name": "hyperv-defaults"
+      },
+      "spec": {
+        "domainspec": [
+          {
+            "action": "add",
+            "data": {
+              "features": {
+                "hyperv": {
+                  "relaxed": {
+                    "@state": true
+                  },
+                  "vapic": {
+                    "@state": true
+                  },
+                  "spinlocks": {
+                    "@state": true,
+                    "@retries": 8191
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "myapp-defaults": {
+      "version": "v1alpha1",
+      "metadata": {
+        "name": "myapp-defaults"
+      },
+      "spec": {
+        "domainspec": [
+          {
+            "action": "defaults",
+            "type": "hard",
+            "data": {
+              "devices": [
+                {
+                  "graphics": {
+                    "@type": "spice"
+                  }
+                },
+                {
+                  "interface": {
+                    "model": {
+                      "@type": "e1000e"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "sensible-defaults": {
+      "version": "v1alpha1",
+      "metadata": {
+        "name": "sensible-defaults"
+      },
+      "spec": {
+        "vmspec": [
+          {
+            "action": "default",
+            "data": {
+              "devices": {
+                "interfaces": [
+                  {
+                    "model": null,
+                    "@type": "virtio"
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "domainspec": [
+          {
+            "action": "add",
+            "multiple": false,
+            "data": {
+              "devices": [
+                {
+                  "video": {
+                    "model": {
+                      "@type": "qxl"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "spice-stuff": {
+      "version": "v1alpha1",
+      "metadata": {
+        "name": "spice-stuff"
+      },
+      "spec": {
+        "match": [
+          {
+            "domainspec": {
+              "devices": [
+                {
+                  "graphics": {
+                    "@type": "spice"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "domainspec": [
+          {
+            "action": "add",
+            "data": {
+              "devices": [
+                {
+                  "video": {
+                    "model": {
+                      "@type": "qxl"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "action": "add",
+            "multiple": true,
+            "data": {
+              "devices": [
+                {
+                  "redirdev": {
+                    "@bus": "usb",
+                    "@type": "spicevmc"
+                  }
+                },
+                {
+                  "redirdev": {
+                    "@bus": "usb",
+                    "@type": "spicevmc"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+]
