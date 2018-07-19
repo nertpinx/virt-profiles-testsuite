@@ -18,7 +18,7 @@ _curl_opts()
 
     case "${method}" in
         GET)
-            echo "-G -d $(paste -sd '&' "${request_file}")"
+            echo "-G -d '$(paste -sd '&' "${request_file}")'"
             ;;
         POST)
             echo "--data '$(cat "${request_file}")'"
@@ -59,11 +59,11 @@ _test_case()
     local def_opts="-s -S -q"
     local url="http://localhost:${PORT-12345}/${route}/"
     local var_opts="$(_curl_opts ${method} ${request_file})"
-    local outs="-D ${tmpdir}/headers.txt -o ${tmpdir}/content.txt"
+    local outs="-D '${tmpdir}/headers.txt' -o '${tmpdir}/content.txt'"
     local opts="${def_opts} ${outs} ${var_opts}"
 
     local curl_output
-    curl_output=$(curl ${opts} "${url}" 2>&1)
+    curl_output=$(eval "curl ${opts} '${url}'" 2>&1)
     local curl_result="$?"
     if [[ "${curl_result}" != $? ]]; then
         _echo2 "Test case '${test_name}' failed:"
