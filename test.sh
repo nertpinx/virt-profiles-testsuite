@@ -15,14 +15,13 @@ _curl_opts()
 {
     local method="$1"
     local request_file="$2"
-    local url="$3"
 
     case "${method}" in
         GET)
-            echo "${url}?$(paste -sd '&' "${request_file}")"
+            echo "-G -d $(paste -sd '&' "${request_file}")"
             ;;
         POST)
-            echo "--post --data '$(cat "${request_file}")' ${url}"
+            echo "--data '$(cat "${request_file}")'"
             ;;
         *)
             ;;
@@ -59,19 +58,19 @@ _test_case()
 
     local def_opts="-s -S -q"
     local url="http://localhost:${PORT-12345}/${route}/"
-    local var_opts="$(_curl_opts ${method} ${request_file} ${url})"
+    local var_opts="$(_curl_opts ${method} ${request_file})"
     local outs="-D ${tmpdir}/headers.txt -o ${tmpdir}/content.txt"
     local opts="${def_opts} ${outs} ${var_opts}"
 
     local curl_output
-    curl_output=$(curl ${opts} 2>&1)
+    curl_output=$(curl ${opts} "${url}" 2>&1)
     local curl_result="$?"
     if [[ "${curl_result}" != $? ]]; then
         _echo2 "Test case '${test_name}' failed:"
         _echo2 "  curl exited with error ${curl_result}:"
         _echo2 "    ${curl_output}"
         _echo2 "  Manual test command:"
-        _echo2 "    curl ${opts}"
+        _echo2 "    curl ${opts} '${url}'"
         return 1
     fi
 
@@ -82,7 +81,7 @@ _test_case()
         _echo2 "  Expected response code: ${expected_code}"
         _echo2 "  Returned response code: ${actual_code}"
         _echo2 "  Manual test command:"
-        _echo2 "    curl ${opts} -D /dev/stdout"
+        _echo2 "    curl ${opts} -D /dev/stdout '${url}'"
         return 1
     fi
 
@@ -101,7 +100,7 @@ _test_case()
         _echo2 "Test '${test_name}' failed:"
         _echo2 "  Output in: ${tmpdir}"
         _echo2 "  Manual test command:"
-        _echo2 "    curl ${opts}"
+        _echo2 "    curl ${opts} '${url}'"
         return 1
     fi
 
