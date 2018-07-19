@@ -1,0 +1,15 @@
+---
+version: v1alpha1
+metadata:
+  name: myapp-defaults
+spec:
+  domainspec:
+  - action: defaults
+    type: hard
+    data:
+      devices:
+      - graphics:
+          "@type": spice
+      - interface:
+          model:
+            "@type": e1000e

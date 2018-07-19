@@ -1,7 +1,7 @@
-{
-   "myapp-defaults" : "",
-   "spice-stuff" : "",
-   "add-qxl" : "",
-   "hyperv-defaults" : "",
-   "sensible-defaults" : ""
-}
+[
+  "add-qxl",
+  "hyperv-defaults",
+  "myapp-defaults",
+  "sensible-defaults",
+  "spice-stuff"
+]

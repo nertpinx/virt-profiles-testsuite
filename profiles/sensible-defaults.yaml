@@ -1,0 +1,20 @@
+---
+version: v1alpha1
+metadata:
+  name: sensible-defaults
+spec:
+  vmspec:
+  - action: default
+    data:
+      devices:
+        interfaces:
+          - model:
+            "@type": virtio
+  domainspec:
+  - action: add
+    multiple: no
+    data:
+      devices:
+      - video:
+          model:
+            "@type": qxl

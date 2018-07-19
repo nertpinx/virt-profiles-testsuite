@@ -1,3 +1,24 @@
+#!/bin/bash
+
+nc -l -p ${PORT-12345} <<EOF
+HTTP/1.1 200 OK
+Content-type: application/json
+Content-Length: 97
+
+[
+  "add-qxl",
+  "hyperv-defaults",
+  "myapp-defaults",
+  "sensible-defaults",
+  "spice-stuff"
+]
+EOF
+
+nc -l -p ${PORT-12345} <<EOF
+HTTP/1.1 200 OK
+Content-type: application/json
+Content-Length: 3871
+
 [
   {
     "add-qxl": {
@@ -188,3 +209,4 @@
     }
   }
 ]
+EOF

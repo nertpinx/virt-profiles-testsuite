@@ -1,0 +1,12 @@
+---
+version: v1alpha1
+metadata:
+  name: add-qxl
+spec:
+  domainspec:
+  - action: add
+    data:
+      devices:
+        video:
+          model:
+            "@type": qxl
