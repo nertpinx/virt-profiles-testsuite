@@ -53,7 +53,6 @@ _test_case()
     local response_file="$5"
     local test_name="$5"
 
-    rm -rf .virt_tests_*
     local tmpdir="$(mktemp -d -p . .virt_tests_XXXXXXXX)"
 
     local def_opts="-s -S -q"
@@ -137,6 +136,7 @@ _test_route_method()
         local test_name="${request_file%.json}"
         test_name="${test_name/_request_/: }"
 
+        echo "Testing ${request_file}"
         if ! _test_case "${route}" "${method}" "${request_file}" \
              "${response_code}" "${response_file}" "${test_name}"; then
             result=1
@@ -167,6 +167,8 @@ _main()
     local route
     local sub="routes/"
     local result=0
+
+    rm -rf .virt_tests_*
 
     for route in ${sub}*; do
         if ! _test_route "${route#${sub}}"; then
