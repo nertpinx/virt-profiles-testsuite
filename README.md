@@ -1,14 +1,9 @@
-= testsuite for the virt-profiles REST API
+# Testsuite for the virt-profiles REST API
 
 License: Apache v2
 (C) 2018 the virt-profiles authors
 
-
-=== content
-1. curl command lines
-2. request/response documents
-
-=== layout
+## Layout
 The testsuite is organized as follows.
 1. there is a top-level directory in the repo root called "routes"
 2. REST routes starts from the "routes" directory. Example:
@@ -34,4 +29,7 @@ The testsuite is organized as follows.
    - 000\_request.json
    - 000\_response\_200.json
 
-   Finally, in each subdirectory CURL.sh file will illustrate the template command line to send the requests.
+## Running the testsuite
+There are two scripts:
+- `test.sh` which goes over all the test cases and queries the endpoint on localhost on port 12345 (can be changed using environment variable $PORT) and reports failed tests.
+- `mock.sh` which tries to act as functioning program with which the tests pass, but it just goes over the test data in the same order as `test.sh` and returns what is expected.
