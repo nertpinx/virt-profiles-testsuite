@@ -1,0 +1,17 @@
+{
+  "vm": {
+    "metadata": {
+      "name": "test-vm"
+    },
+    "spec": {
+      "domain": {
+        "devices": {}
+      }
+    }
+  },
+  "profiles": [
+    {
+      "name": "non-existing-profile"
+    }
+  ]
+}

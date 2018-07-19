@@ -1,0 +1,12 @@
+{
+  "vm": {
+    "metadata": {
+      "name": "test-vm"
+    },
+    "spec": {
+      "domain": {
+        "devices": {}
+      }
+    }
+  }
+}

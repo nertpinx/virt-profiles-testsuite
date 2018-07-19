@@ -1,0 +1,23 @@
+{
+  "vm": {
+    "metadata": {
+      "name": "test-vm"
+    },
+    "spec": {
+      "domain": {
+        "devices": {
+          "interfaces": [
+            {
+              "bridge": {},
+            }
+          ]
+        }
+      }
+    }
+  },
+  "profiles": [
+    {
+      "name": "sensible-defaults"
+    }
+  ]
+}
