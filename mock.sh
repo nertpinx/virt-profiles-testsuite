@@ -25,6 +25,8 @@ Content-Length: $((${#data}+1))
 
 ${data}
 EOF
+            # Don't break lines
+            echo
         done
      done
 }
