@@ -8,8 +8,7 @@ spec:
     data:
       devices:
         interfaces:
-          - model:
-            "@type": virtio
+          - model: virtio
   domainspec:
   - action: add
     multiple: no
